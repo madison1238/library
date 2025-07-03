@@ -1,8 +1,14 @@
+:root {
+  --background: #f0eef1;
+  --accent: #ffffff;
+  --text: #000000;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Inter";
+  font-family: "Lexend";
 }
 html,
 body {
@@ -20,12 +26,13 @@ body {
 
 #header {
   min-height: 100px;
-  background-color: rgb(31, 31, 31);
-  color: white;
+  background-color: var(--accent);
+  color: var(--text);
   z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 8px 0 8px gray;
 }
 
 #header h1 {
@@ -36,6 +43,76 @@ body {
 
 #content {
   flex: 1;
-  background-color: black;
+  background-color: var(--background);
   z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+}
+
+#add-book {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+}
+
+#add-book button {
+  color: var(--text);
+  background: none;
+  border: none;
+  font-size: 30px;
+  padding: 15px;
+  border-radius: 15px;
+}
+
+#add-book button:hover {
+  background-color: var(--accent);
+}
+
+#library {
+  border: 2px solid red;
+  height: 100%;
+  margin: 0 150px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 15px;
+  background-color: var(--accent);
+  color: var(--text);
+  box-shadow: 5px 5px 5px grey;
+}
+
+.card p {
+  color: var(--text);
+  font-size: larger;
+  font-weight: 600;
+  text-align: center;
+}
+
+.card button {
+  width: 100%;
+  padding: 8px 0;
+  border-radius: 10px;
+  border: none;
+  font-size: larger;
+  font-weight: 600;
+}
+
+button.yread {
+  background-color: rgb(242, 89, 89);
+}
+
+button.nread {
+  background-color: rgb(140, 230, 140);
 }
