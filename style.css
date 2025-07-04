@@ -109,10 +109,10 @@ body {
   font-weight: 600;
 }
 
-button.yread {
+button.nread {
   background-color: rgb(242, 89, 89);
 }
 
-button.nread {
+button.yread {
   background-color: rgb(140, 230, 140);
 }
