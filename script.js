@@ -3,6 +3,8 @@ const libraryCont = document.querySelector('#library')
 const addBookBtn = document.querySelector('#add-book button')
 const formContainer = document.querySelector('#add-form')
 const form = document.querySelector('form')
+const removeBtn = document.querySelectorAll('button#remove')
+const readBtn = document.querySelectorAll('#read')
 
 
 const myLibrary = [];
@@ -24,6 +26,7 @@ function addBookToLibrary(title,author,pages,read){
 function createCard(book){
     const newCard = document.createElement('div');
     newCard.classList.add('card');
+    newCard.setAttribute('data-id', book.id)
 
     const title = document.createElement('p');
     title.id = 'title';
@@ -51,6 +54,7 @@ function createCard(book){
     const remove = document.createElement('button');
     remove.id = 'remove';
     remove.textContent = 'remove'
+    addRemoveListener(remove)
     
     libraryCont.appendChild(newCard);
     newCard.appendChild(title);
@@ -70,6 +74,20 @@ function displayBooks(){
 function read(word){
     if (word == 'on') return true
     return false
+}
+
+function addRemoveListener(btn){
+btn.addEventListener('click', () => {
+        const removeCardID = btn.parentElement.getAttribute('data-id')
+        for ( let i = 0 ; i < myLibrary.length; i++){
+            let book = myLibrary.at(i)
+            if (book.id === removeCardID){
+                myLibrary.splice(i,1);
+            }
+        }
+        displayBooks();
+    })
+
 }
 
 addBookBtn.addEventListener('click', () => {
@@ -92,8 +110,11 @@ form.addEventListener('submit', (e) => {
 })
 
 
+
+
+
+
 addBookToLibrary('mad', 'madi', 32, true)
 displayBooks(myLibrary)
 addBookToLibrary('korn', 'fred', 543, false)
 displayBooks(myLibrary)
-
