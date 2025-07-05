@@ -131,12 +131,3 @@ form.addEventListener('submit', (e) => {
 })
 
 
-
-
-
-
-addBookToLibrary('mad', 'madi', 32, true)
-displayBooks(myLibrary)
-addBookToLibrary('korn', 'fred', 543, false)
-displayBooks(myLibrary)
-console.log(myLibrary)
