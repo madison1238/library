@@ -1,5 +1,8 @@
 
 const libraryCont = document.querySelector('#library')
+const addBookBtn = document.querySelector('#add-book button')
+const formContainer = document.querySelector('#add-form')
+const form = document.querySelector('form')
 
 
 const myLibrary = [];
@@ -62,6 +65,17 @@ function displayBooks(library){
         createCard(book);
     }
 }
+
+addBookBtn.addEventListener('click', () => {
+    formContainer.style.display = 'flex'
+})
+
+formContainer.addEventListener('click', (e) => {
+    if (e.target === formContainer){
+        formContainer.style.display = 'none';
+    }
+})
+
 
 
 
