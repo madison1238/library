@@ -18,6 +18,7 @@ function Book(title, author, pages, read){
 function addBookToLibrary(title,author,pages,read){
     newBook = new Book(title,author,pages,read);
     myLibrary.push(newBook);
+    displayBooks()
 }
 
 function createCard(book){
@@ -59,11 +60,16 @@ function createCard(book){
     newCard.appendChild(remove);
 }
 
-function displayBooks(library){
+function displayBooks(){
     libraryCont.innerHTML = '';
-    for(let book of library ){
+    for(let book of myLibrary){
         createCard(book);
     }
+}
+
+function read(word){
+    if (word == 'on') return true
+    return false
 }
 
 addBookBtn.addEventListener('click', () => {
@@ -76,7 +82,14 @@ formContainer.addEventListener('click', (e) => {
     }
 })
 
-
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const fd = new FormData(form)
+    const obj = Object.fromEntries(fd);
+    addBookToLibrary(obj.title, obj.author, obj.pages, read(obj.read))
+    formContainer.style.display = 'none';
+    form.reset();
+})
 
 
 addBookToLibrary('mad', 'madi', 32, true)
