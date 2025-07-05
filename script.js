@@ -3,7 +3,6 @@ const libraryCont = document.querySelector('#library')
 const addBookBtn = document.querySelector('#add-book button')
 const formContainer = document.querySelector('#add-form')
 const form = document.querySelector('form')
-const removeBtn = document.querySelectorAll('button#remove')
 const readBtn = document.querySelectorAll('#read')
 
 
@@ -44,12 +43,13 @@ function createCard(book){
     read.id = 'read'
     if(book.read === true){
         read.textContent = 'read';
-        read.classList.add('yread');
+        read.style.backgroundColor = 'var(--green)'
     }
     else{
         read.textContent = 'not read';
-        read.classList.add('nread');
+        read.style.backgroundColor = 'var(--red)'
     }
+    addReadListener(read)
 
     const remove = document.createElement('button');
     remove.id = 'remove';
@@ -90,6 +90,27 @@ btn.addEventListener('click', () => {
 
 }
 
+function addReadListener(btn){
+    btn.addEventListener('click', () => {
+        const bookId = btn.parentElement.getAttribute('data-id')
+        for(let book of myLibrary){
+            if(book.id === bookId){
+                if(book.read == true){
+                    book.read = false;
+                    btn.style.backgroundColor = 'var(--red)'
+                    btn.textContent = 'not read'
+                }
+                else{
+                    book.read = true
+                    btn.style.backgroundColor = 'var(--green)'
+                    btn.textContent = 'read'
+                }
+            }
+        }
+    })
+}
+
+
 addBookBtn.addEventListener('click', () => {
     formContainer.style.display = 'flex'
 })
@@ -118,3 +139,4 @@ addBookToLibrary('mad', 'madi', 32, true)
 displayBooks(myLibrary)
 addBookToLibrary('korn', 'fred', 543, false)
 displayBooks(myLibrary)
+console.log(myLibrary)
